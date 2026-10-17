@@ -1,0 +1,27 @@
+{
+	"eslint.validate": ["javascript", "typescript", "svelte"],
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+  	"workbench.iconTheme": "symbols",
+	"editor.formatOnType": true,
+  	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+  	"explorer.compactFolders": false,
+  	"symbols.hidesExplorerArrows": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+}
