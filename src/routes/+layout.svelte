@@ -51,7 +51,7 @@
 	<link href={favicon} rel="icon" />
 </svelte:head>
 
-<ModeWatcher defaultMode="dark" defaultTheme="dark" />
+<ModeWatcher defaultMode="dark" defaultTheme="dark" track={false} />
 
 <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
 	<nav class="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
