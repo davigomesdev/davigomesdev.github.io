@@ -16,9 +16,6 @@ const config = {
 			precompress: false,
 			strict: true,
 		}),
-		alias: {
-			'@/*': './path/to/lib/*',
-		},
 	},
 };
 
