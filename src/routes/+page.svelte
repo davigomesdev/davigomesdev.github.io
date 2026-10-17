@@ -247,7 +247,7 @@
 		{
 			type: 'Curso Técnico',
 			title: 'Técnico em Redes de Computadores',
-			institution: 'Escola Técnica Estadual Nereu Alves de Vasconcelos (ETP)',
+			institution: 'Escola Técnica Estadual Aderico Alves de Vasconcelos (ETE)',
 			year: '2019',
 			description: 'Ensino Médio integrado ao Curso Técnico • Goiana - PE',
 		},
@@ -324,12 +324,12 @@
 <main>
 	<!-- hero -->
 	<section class="relative overflow-hidden border-b border-border" aria-labelledby="hero">
-		<div class="pointer-events-none flex items-center justify-center absolute left-1/2 -bottom-40 -translate-x-1/2">
-			<div class="bg-primary/6 size-140 rounded-full blur-[100px]"></div>
-			<div class="border-border/40 dark:border-border/80 absolute size-280 rounded-full border"></div>
-			<div class="border-border/40 dark:border-border/80 absolute size-220 rounded-full border border-dashed"></div>
-			<div class="border-border/40 absolute size-150 rounded-full border"></div>
-			<div class="border-border/40 absolute size-100 rounded-full border border-dashed"></div>
+		<div class="pointer-events-none absolute -bottom-40 left-1/2 flex -translate-x-1/2 items-center justify-center">
+			<div class="size-140 rounded-full bg-primary/6 blur-[100px]"></div>
+			<div class="absolute size-280 rounded-full border border-border/40 dark:border-border/80"></div>
+			<div class="absolute size-220 rounded-full border border-dashed border-border/40 dark:border-border/80"></div>
+			<div class="absolute size-150 rounded-full border border-border/40"></div>
+			<div class="absolute size-100 rounded-full border border-dashed border-border/40"></div>
 		</div>
 
 		<div class="relative z-10 mx-auto flex max-w-5xl flex-col items-center justify-center px-6 py-18 text-center">
@@ -343,10 +343,10 @@
 				</Avatar.Root>
 			</div>
 
-			<Typography.H1 id="hero" class="text-center font-bold max-w-2xl lg:max-w-3xl mt-10">
+			<Typography.H1 id="hero" class="mt-10 max-w-2xl text-center font-bold lg:max-w-3xl">
 				Código limpo, alta performance, <span class="text-primary">sistemas que escalam.</span>
 			</Typography.H1>
-			<Typography.P class="text-center max-w-lg mt-6">
+			<Typography.P class="mt-6 max-w-lg text-center">
 				Desenvolvedor full-stack com foco em performance e sistemas distribuídos. Go, Rust, Node.js, React, Svelte, Web3 (Solidity & Solana) e bancos relacionais e NoSQL.
 			</Typography.P>
 
@@ -362,21 +362,21 @@
 
 	<!-- stats -->
 	<section class="border-b border-border" aria-labelledby="stats">
-		<div id="stats" class="mx-auto max-w-5xl p-6 grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+		<div id="stats" class="mx-auto grid max-w-5xl grid-cols-2 place-items-center gap-6 p-6 md:grid-cols-4">
 			<div class="flex items-center gap-3">
-				<Typography.P class="text-primary text-3xl font-bold tracking-tight">5+</Typography.P>
+				<Typography.P class="text-3xl font-bold tracking-tight text-primary">5+</Typography.P>
 				<Typography.P class="leading-tight">Anos de<br />experiência</Typography.P>
 			</div>
 			<div class="flex items-center gap-3">
-				<Typography.P class="text-primary text-3xl font-bold tracking-tight">12+</Typography.P>
+				<Typography.P class="text-3xl font-bold tracking-tight text-primary">12+</Typography.P>
 				<Typography.P class="leading-tight">Projetos<br />concluídos</Typography.P>
 			</div>
 			<div class="flex items-center gap-3">
-				<Typography.P class="text-primary text-3xl font-bold tracking-tight">10+</Typography.P>
+				<Typography.P class="text-3xl font-bold tracking-tight text-primary">10+</Typography.P>
 				<Typography.P class="leading-tight">Tecnologias<br />dominadas</Typography.P>
 			</div>
 			<div class="flex items-center gap-3">
-				<Typography.P class="text-primary text-3xl font-bold tracking-tight">100+</Typography.P>
+				<Typography.P class="text-3xl font-bold tracking-tight text-primary">100+</Typography.P>
 				<Typography.P class="leading-tight">Code<br />commits</Typography.P>
 			</div>
 		</div>
@@ -384,15 +384,15 @@
 
 	<!-- works -->
 	<section class="py-10" aria-labelledby="works">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="works">Trabalhos para clientes</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">Sistemas e produtos entregues para empresas e clientes reais.</Typography.P>
+				<Typography.P class="mx-auto mt-4 max-w-lg">Sistemas e produtos entregues para empresas e clientes reais.</Typography.P>
 			</div>
 
 			<div class="px-10">
 				<Carousel.Root
-					class="w-full mt-16"
+					class="mt-16 w-full"
 					opts={{
 						align: 'start',
 						loop: true,
@@ -406,17 +406,17 @@
 					<Carousel.Content class="-ms-1">
 						{#each privateProjects as privateProject (privateProject.title)}
 							<Carousel.Item class="ps-1 md:basis-1/2 lg:basis-1/3">
-								<div class="p-1 h-full">
+								<div class="h-full p-1">
 									<Dialog.Root>
 										<Dialog.Trigger>
 											<div
-												class="group h-full cursor-pointer transition-all hover:border-primary/30 relative overflow-hidden rounded-xl border border-border bg-card flex flex-col"
+												class="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/30"
 											>
-												<div class="bg-muted flex-1 p-2 aspect-video flex items-center justify-center text-muted-foreground">
-													<img class="w-full h-full rounded-lg object-cover" alt={privateProject.title} src={privateProject.image} />
+												<div class="flex aspect-video flex-1 items-center justify-center bg-muted p-2 text-muted-foreground">
+													<img class="h-full w-full rounded-lg object-cover" alt={privateProject.title} src={privateProject.image} />
 												</div>
 
-												<div class="p-5 h-52 flex flex-col gap-3">
+												<div class="flex h-52 flex-col gap-3 p-5">
 													<div class="flex items-center justify-between">
 														<span class="font-mono text-xs text-muted-foreground">{privateProject.year}</span>
 														{#if privateProject.badge}
@@ -426,10 +426,10 @@
 
 													<div class="text-left">
 														<Typography.H3 class="text-base">{privateProject.title}</Typography.H3>
-														<Typography.P class="mt-1.5 leading-relaxed line-clamp-2">{privateProject.description}</Typography.P>
+														<Typography.P class="mt-1.5 line-clamp-2 leading-relaxed">{privateProject.description}</Typography.P>
 													</div>
 
-													<div class="flex flex-wrap gap-1.5 mt-auto">
+													<div class="mt-auto flex flex-wrap gap-1.5">
 														{#each privateProject.tags as tag (tag)}
 															<Badge class="text-primary" variant="secondary">{tag}</Badge>
 														{/each}
@@ -437,16 +437,16 @@
 												</div>
 											</div>
 										</Dialog.Trigger>
-										<Dialog.Content class="sm:max-w-3xl overflow-hidden">
+										<Dialog.Content class="overflow-hidden sm:max-w-3xl">
 											<Dialog.Header></Dialog.Header>
 											<div class="grid md:grid-cols-[1fr_350px]">
-												<div class="bg-muted min-h-60 flex items-center justify-center">
-													<div class="bg-muted flex-1 p-2 flex items-center justify-center text-muted-foreground">
+												<div class="flex min-h-60 items-center justify-center bg-muted">
+													<div class="flex flex-1 items-center justify-center bg-muted p-2 text-muted-foreground">
 														<img class="w-full rounded-lg" alt={privateProject.title} src={privateProject.image} />
 													</div>
 												</div>
 
-												<div class="p-6 flex flex-col gap-4 max-h-[50vh] overflow-y-auto">
+												<div class="flex max-h-[50vh] flex-col gap-4 overflow-y-auto p-6">
 													<div class="flex items-center justify-between">
 														<span class="font-mono text-xs text-muted-foreground">{privateProject.year}</span>
 														{#if privateProject.badge}
@@ -461,7 +461,7 @@
 														</Typography.P>
 													</div>
 
-													<div class="flex flex-wrap gap-1.5 mt-auto">
+													<div class="mt-auto flex flex-wrap gap-1.5">
 														{#each privateProject.tags as tag (tag)}
 															<Badge class="text-primary" variant="secondary">{tag}</Badge>
 														{/each}
@@ -483,19 +483,19 @@
 
 	<!-- opensource -->
 	<section class="py-10" aria-labelledby="opensource">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="opensource">Projetos Open Source</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">Projetos pessoais e experimentações públicas no GitHub.</Typography.P>
+				<Typography.P class="mx-auto mt-4 max-w-lg">Projetos pessoais e experimentações públicas no GitHub.</Typography.P>
 			</div>
 
-			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-16">
+			<div class="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 				{#each publicProjects as publicProject (publicProject.title)}
-					<Card.Root class="group transition-all hover:ring-primary/30 gap-3">
+					<Card.Root class="group gap-3 transition-all hover:ring-primary/30">
 						<Card.Header class="flex items-start justify-between">
 							<span class="font-mono text-xs text-muted-foreground">{publicProject.year}</span>
 							<a
-								class="text-muted-foreground hover:text-foreground transition-all opacity-50 group-hover:opacity-100"
+								class="text-muted-foreground opacity-50 transition-all group-hover:opacity-100 hover:text-foreground"
 								aria-label="Ver no GitHub"
 								href={publicProject.github}
 								target="_blank"
@@ -509,7 +509,7 @@
 							<Typography.P class="mt-1.5 leading-relaxed">{publicProject.description}</Typography.P>
 						</Card.Content>
 
-						<Card.Footer class="flex flex-wrap gap-1.5 mt-auto">
+						<Card.Footer class="mt-auto flex flex-wrap gap-1.5">
 							{#each publicProject.tags as tag (tag)}
 								<Badge class="text-primary" variant="secondary">{tag}</Badge>
 							{/each}
@@ -529,21 +529,21 @@
 
 	<!-- stacks -->
 	<section class="py-10" aria-labelledby="stacks">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="stacks">Especialidades Técnicas</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">Tecnologias que uso no dia a dia para construir sistemas robustos e interfaces modernas.</Typography.P>
+				<Typography.P class="mx-auto mt-4 max-w-lg">Tecnologias que uso no dia a dia para construir sistemas robustos e interfaces modernas.</Typography.P>
 			</div>
 
-			<div class="bg-card mt-16 grid rounded-xl border border-border grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-border max-sm:divide-y sm:divide-x">
+			<div class="mt-16 grid grid-cols-1 divide-border rounded-xl border border-border bg-card max-sm:divide-y sm:grid-cols-2 sm:divide-x lg:grid-cols-4">
 				{#each stacks as stack (stack.category)}
 					<div class="p-4">
-						<Typography.P class="font-mono text-xs uppercase tracking-widest">{stack.category}</Typography.P>
-						<ul class="flex flex-wrap gap-2 mt-4">
+						<Typography.P class="font-mono text-xs tracking-widest uppercase">{stack.category}</Typography.P>
+						<ul class="mt-4 flex flex-wrap gap-2">
 							{#each stack.items as item (item.name)}
-								<li class="flex items-center gap-2.5 text-sm font-medium px-2.5 py-2 rounded-md bg-background border border-border">
-									<Icon class="text-primary size-4" icon={item.icon} />
-									<span class="text-sm text-foreground font-medium">{item.name}</span>
+								<li class="flex items-center gap-2.5 rounded-md border border-border bg-background px-2.5 py-2 text-sm font-medium">
+									<Icon class="size-4 text-primary" icon={item.icon} />
+									<span class="text-sm font-medium text-foreground">{item.name}</span>
 								</li>
 							{/each}
 						</ul>
@@ -555,30 +555,30 @@
 
 	<!-- database -->
 	<section class="py-10" aria-labelledby="database">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="database">Especialidade em Banco de Dados</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">Modelagem, otimização e operação de bancos de dados em sistemas de alta demanda.</Typography.P>
+				<Typography.P class="mx-auto mt-4 max-w-lg">Modelagem, otimização e operação de bancos de dados em sistemas de alta demanda.</Typography.P>
 			</div>
 
 			<ul class="mt-6 flex flex-wrap justify-center gap-4">
 				{#each databases as item (item.name)}
 					<li class="flex items-center gap-2.5 rounded-lg border border-border bg-card px-4 py-3">
-						<Icon class="text-primary size-6" icon={item.icon} />
-						<span class="text-sm text-foreground font-medium">{item.name}</span>
+						<Icon class="size-6 text-primary" icon={item.icon} />
+						<span class="text-sm font-medium text-foreground">{item.name}</span>
 					</li>
 				{/each}
 			</ul>
 
 			<div class="mt-16">
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 					{#each databaseExpertise as item (item.title)}
 						<Card.Root>
 							<Card.Content>
 								<div class="flex size-9 items-center justify-center rounded-lg bg-primary/10">
 									<item.icon class="size-4 text-primary" />
 								</div>
-								<Typography.H3 class="text-lg mt-4">{item.title}</Typography.H3>
+								<Typography.H3 class="mt-4 text-lg">{item.title}</Typography.H3>
 								<Typography.P class="mt-1.5 leading-relaxed">{item.description}</Typography.P>
 							</Card.Content>
 						</Card.Root>
@@ -590,22 +590,22 @@
 
 	<!-- infra -->
 	<section class="py-10" aria-labelledby="infra">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="infra">Infraestrutura & DevOps</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">Ferramentas que uso para deploy, escalabilidade e operação de sistemas em produção.</Typography.P>
+				<Typography.P class="mx-auto mt-4 max-w-lg">Ferramentas que uso para deploy, escalabilidade e operação de sistemas em produção.</Typography.P>
 			</div>
 
 			<div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{#each infras as infra (infra.name)}
 					<Card.Root class="py-5">
-						<Card.Content class="px-5 flex items-start gap-4">
-							<Icon class="text-primary size-7" icon={infra.icon} />
+						<Card.Content class="flex items-start gap-4 px-5">
+							<Icon class="size-7 text-primary" icon={infra.icon} />
 							<div>
 								<Typography.H3 class="text-sm">
 									{infra.name}
 								</Typography.H3>
-								<Typography.P class="text-xs mt-1 leading-relaxed">
+								<Typography.P class="mt-1 text-xs leading-relaxed">
 									{infra.description}
 								</Typography.P>
 							</div>
@@ -618,22 +618,22 @@
 
 	<!-- design -->
 	<section class="py-10" aria-labelledby="design">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="design">Design & Criação</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">
+				<Typography.P class="mx-auto mt-4 max-w-lg">
 					Criação de identidades visuais, interfaces, materiais gráficos e projetos 3D utilizando as principais ferramentas do mercado.
 				</Typography.P>
 			</div>
 
 			<div class="mt-16 grid gap-5 md:grid-cols-2">
-				<div class="md:max-w-100 rounded-xl overflow-hidden border border-border">
+				<div class="overflow-hidden rounded-xl border border-border md:max-w-100">
 					<img class="h-full w-full object-cover" alt="Design & Criação" src="/designer.gif" />
 				</div>
-				<div class="bg-card rounded-xl border border-border grid grid-cols-3">
+				<div class="grid grid-cols-3 rounded-xl border border-border bg-card">
 					{#each designers as design (design.name)}
-						<div class="p-5 flex items-center justify-center flex-col gap-4 border-border not-nth-[3n]:border-r nth-[-n+3]:border-b">
-							<Icon class="text-primary size-7" icon={design.icon} />
+						<div class="flex flex-col items-center justify-center gap-4 border-border p-5 not-nth-[3n]:border-r nth-[-n+3]:border-b">
+							<Icon class="size-7 text-primary" icon={design.icon} />
 							<div class="text-center">
 								<Typography.H3 class="text-sm">{design.name}</Typography.H3>
 							</div>
@@ -645,23 +645,23 @@
 	</section>
 
 	<!-- certificates -->
-	<section class="py-10 border-b border-border" aria-labelledby="certificates">
-		<div class="mx-auto px-6 max-w-5xl">
+	<section class="border-b border-border py-10" aria-labelledby="certificates">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="certificates">Formação & Certificados</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-3">Formação acadêmica e cursos que complementam minha base técnica.</Typography.P>
+				<Typography.P class="mx-auto mt-3 max-w-lg">Formação acadêmica e cursos que complementam minha base técnica.</Typography.P>
 			</div>
 
 			<!-- main certificates -->
 			<div class="mt-14 grid gap-6 sm:grid-cols-2">
 				{#each education as item (item.title)}
-					<div class="relative group">
+					<div class="group relative">
 						<!-- moldura externa -->
 						<div class="absolute inset-0 rounded-xl border border-primary/25 bg-card transition-colors group-hover:border-primary/45"></div>
 						<!-- moldura interna -->
 						<div class="absolute inset-1.25 rounded-[10px] border border-primary/15"></div>
 
-						<div class="relative flex flex-col items-center px-6 pb-6 pt-10 text-center">
+						<div class="relative flex flex-col items-center px-6 pt-10 pb-6 text-center">
 							<!-- selo -->
 							<div class="absolute -top-5 left-1/2 -translate-x-1/2">
 								<div class="flex size-11 items-center justify-center rounded-full border-2 border-primary/40 bg-background shadow-md">
@@ -672,12 +672,12 @@
 							</div>
 
 							<!-- tipo -->
-							<p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+							<p class="text-[10px] font-semibold tracking-[0.22em] text-primary uppercase">
 								{item.type}
 							</p>
 
 							<!-- título -->
-							<h3 class="mt-3 max-w-65 text-[15px] font-semibold leading-snug tracking-tight">
+							<h3 class="mt-3 max-w-65 text-[15px] leading-snug font-semibold tracking-tight">
 								{item.title}
 							</h3>
 
@@ -712,7 +712,7 @@
 
 			<!-- extensions -->
 			<div class="mt-10">
-				<Typography.P class="mb-7 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Cursos & Certificações</Typography.P>
+				<Typography.P class="mb-7 text-center font-mono text-[11px] tracking-widest text-muted-foreground uppercase">Cursos & Certificações</Typography.P>
 
 				<div class="relative">
 					<Carousel.Root
@@ -729,8 +729,8 @@
 					>
 						<Carousel.Content class="-ms-3">
 							{#each certificates as cert (cert.title)}
-								<Carousel.Item class="ps-3 basis-[85%] pt-3 sm:basis-[45%] lg:basis-[31%]">
-									<div class="relative h-full group">
+								<Carousel.Item class="basis-[85%] ps-3 pt-3 sm:basis-[45%] lg:basis-[31%]">
+									<div class="group relative h-full">
 										<div class="absolute inset-0 rounded-lg border border-border bg-card transition-colors group-hover:border-primary/40"></div>
 										<div class="absolute inset-1 rounded-md border border-border/50"></div>
 
@@ -748,7 +748,7 @@
 												</span>
 											</div>
 
-											<Typography.H3 class="mt-2.5 line-clamp-2 text-[13px] font-semibold leading-snug">
+											<Typography.H3 class="mt-2.5 line-clamp-2 text-[13px] leading-snug font-semibold">
 												{cert.title}
 											</Typography.H3>
 
@@ -757,7 +757,7 @@
 											</Typography.P>
 
 											<a
-												class="mt-auto pt-3 inline-flex items-center gap-1 text-[11px] font-medium text-primary opacity-80 transition-opacity hover:opacity-100 hover:underline"
+												class="mt-auto inline-flex items-center gap-1 pt-3 text-[11px] font-medium text-primary opacity-80 transition-opacity hover:underline hover:opacity-100"
 												href={cert.url}
 												rel="noopener noreferrer"
 												target="_blank"
@@ -779,7 +779,7 @@
 	<!-- sobre -->
 	<section class="border-b border-border py-16" aria-labelledby="about">
 		<div class="mx-auto max-w-4xl px-6">
-			<div class="grid gap-10 md:grid-cols-2 items-center">
+			<div class="grid items-center gap-10 md:grid-cols-2">
 				<div class="text-center">
 					<Typography.H2 id="about">Sobre mim</Typography.H2>
 					<div class="mt-6 space-y-4">
@@ -796,7 +796,7 @@
 				</div>
 
 				<div class="flex justify-center">
-					<Avatar.Root class="data-[size=lg]:size-48 rounded-2xl after:border-primary after:border-none" size="lg">
+					<Avatar.Root class="rounded-2xl after:border-none after:border-primary data-[size=lg]:size-48" size="lg">
 						<Avatar.Image class="rounded-2xl" alt="Davi Gomes" src="https://github.com/davigomesdev.png" />
 						<Avatar.Fallback class="rounded-2xl text-4xl">DG</Avatar.Fallback>
 					</Avatar.Root>
@@ -807,14 +807,14 @@
 
 	<!-- contact -->
 	<section class="py-16" aria-labelledby="contact">
-		<div class="mx-auto px-6 max-w-5xl">
+		<div class="mx-auto max-w-5xl px-6">
 			<div class="mx-auto max-w-3xl text-center">
 				<Typography.H2 id="contact">Vamos conversar?</Typography.H2>
-				<Typography.P class="mx-auto max-w-lg mt-4">Disponível para projetos freelance, oportunidades de trabalho e colaborações.</Typography.P>
+				<Typography.P class="mx-auto mt-4 max-w-lg">Disponível para projetos freelance, oportunidades de trabalho e colaborações.</Typography.P>
 			</div>
 
-			<div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-				<Button href="mailto:davigomesdarmo9@gmail.com" size="lg">
+			<div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+				<Button href="mailto:davigomescarmo9@gmail.com" size="lg">
 					<MailIcon />
 					Enviar email
 				</Button>
