@@ -1,11 +1,21 @@
 <script lang="ts">
+	import type { CarouselAPI } from '$lib/components/ui/carousel/context';
+
+	import { stacks } from '../constants/stacks';
+	import { infras } from '../constants/infras';
+	import { designers } from '../constants/designers';
+	import { databases } from '../constants/databases';
+	import { education } from '../constants/education';
+	import { certificates } from '../constants/certificates';
+	import { publicProjects } from '../constants/public-projects';
+	import { privateProjects } from '../constants/private-projects';
+	import { databaseExpertise } from '../constants/database-expertise';
+
+	import { cn } from '$lib/utils';
+
 	import Icon from '@iconify/svelte';
-	import ZapIcon from '@lucide/svelte/icons/zap';
 	import MailIcon from '@lucide/svelte/icons/mail';
-	import LayersIcon from '@lucide/svelte/icons/layers';
-	import DatabaseIcon from '@lucide/svelte/icons/database';
 	import DownloadIcon from '@lucide/svelte/icons/download';
-	import ShieldCheckIcon from '@lucide/svelte/icons/shield-check';
 
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
@@ -17,308 +27,19 @@
 	import * as Carousel from '$lib/components/ui/carousel';
 	import * as Typography from '$lib/components/ui/typography';
 
-	const privateProjects = [
-		{
-			year: '2024',
-			badge: null,
-			image: '/projects/liderlocadora/cover.png',
-			title: 'Liderlocadora',
-			description:
-				'Jogo NFT multiplayer em tempo real com batalhas por turnos. O backend em Go gerencia milhares de salas simultâneas com um RoomManager concorrente usando sync.RWMutex e um game loop de 250ms por tick, garantindo consistência sem race conditions. Cada sala é uma entidade isolada com lifecycle próprio — waiting, started, finished e expired — processada de forma assíncrona via goroutines. O sistema de WebSocket transmite pacotes tipados para cada jogador individualmente, nunca expondo dados do adversário. Bots jogam com IA baseada em heurísticas de energia e vida, simulando comportamento humano com delay aleatório. Smart contracts em Solidity gerenciam ownership dos monstros NFT on-chain, com o frontend em TypeScript e WebGL renderizando as batalhas em tempo real.',
-			tags: ['Node.js', 'PostgreSQL', 'React', 'TypeScript'],
-		},
-		{
-			year: '2025',
-			badge: null,
-			image: '/projects/monsters/cover.gif',
-			title: 'Monsters (NFT Game)',
-			description:
-				'Jogo NFT multiplayer em tempo real com batalhas por turnos. O backend em Go gerencia milhares de salas simultâneas com um RoomManager concorrente usando sync.RWMutex e um game loop de 250ms por tick, garantindo consistência sem race conditions. Cada sala é uma entidade isolada com lifecycle próprio — waiting, started, finished e expired — processada de forma assíncrona via goroutines. O sistema de WebSocket transmite pacotes tipados para cada jogador individualmente, nunca expondo dados do adversário. Bots jogam com IA baseada em heurísticas de energia e vida, simulando comportamento humano com delay aleatório. Smart contracts em Solidity gerenciam ownership dos monstros NFT on-chain, com o frontend em TypeScript e WebGL renderizando as batalhas em tempo real.',
-			tags: ['Go', 'PostgreSQL', 'WebSocket', 'Solidity', 'TypeScript', 'WebGL'],
-		},
-	];
+	let galleryIndexes: Record<string, number> = $state<Record<string, number>>({});
+	const galleryApis: Record<string, CarouselAPI | undefined> = {};
 
-	const publicProjects = [
-		{
-			year: '2024',
-			title: 'ShinegameFi Presale',
-			description: 'Plataforma de pré-venda Web3 para projeto GameFi com smart contracts e integração com carteiras.',
-			tags: ['Solidity', 'Web3.js', 'TypeScript'],
-			github: 'https://github.com/davigomesdev/presale.shinegamefi.com',
-		},
-		{
-			year: '2024',
-			title: 'Snatch Veggies Server',
-			description: 'API REST para plataforma de delivery com autenticação e gestão de pedidos.',
-			tags: ['Node.js', 'TypeScript', 'PostgreSQL'],
-			github: 'https://github.com/davigomesdev/snatch-veggies-server',
-		},
-		{
-			year: '2024',
-			title: 'IncaSwap',
-			description: 'DEX descentralizada com swaps de tokens e liquidez em pools on-chain.',
-			tags: ['Solidity', 'Solana', 'Web3'],
-			github: 'https://github.com/davigomesdev/incaswap',
-		},
-		{
-			year: '2024',
-			title: 'Monsters Game',
-			description: 'Jogo RPG on-chain com monstros NFT, batalhas e economia tokenizada.',
-			tags: ['Solidity', 'Web3.js', 'React'],
-			github: 'https://github.com/davigomesdev/monsters-game',
-		},
-		{
-			year: '2024',
-			title: 'Cashback',
-			description: 'Sistema de cashback com acúmulo de pontos e resgates automatizados.',
-			tags: ['Node.js', 'React', 'PostgreSQL'],
-			github: 'https://github.com/davigomesdev/cashback',
-		},
-		{
-			year: '2025',
-			title: 'IQContábil',
-			description: 'SaaS multi-tenant para contadores brasileiros. Backend Rust + SvelteKit.',
-			tags: ['Rust', 'SvelteKit', 'PostgreSQL'],
-			github: 'https://github.com/davigomesdev/cashback',
-		},
-	];
+	function bindGallery(title: string, api?: CarouselAPI): void {
+		galleryApis[title] = api;
+		if (!api) return;
 
-	const stacks = [
-		{
-			category: 'Backend',
-			items: [
-				{ name: 'Go', icon: 'simple-icons:go' },
-				{ name: 'Rust', icon: 'simple-icons:rust' },
-				{ name: 'Java', icon: 'simple-icons:openjdk' },
-				{ name: 'Node.js', icon: 'simple-icons:nodedotjs' },
-				{ name: 'C', icon: 'simple-icons:c' },
-				{ name: 'C++', icon: 'simple-icons:cplusplus' },
-			],
-		},
-		{
-			category: 'Frontend',
-			items: [
-				{ name: 'React', icon: 'simple-icons:react' },
-				{ name: 'Svelte', icon: 'simple-icons:svelte' },
-				{ name: 'TypeScript', icon: 'simple-icons:typescript' },
-				{ name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss' },
-			],
-		},
-		{
-			category: 'Messaging & Streaming',
-			items: [
-				{ name: 'Kafka', icon: 'simple-icons:apachekafka' },
-				{ name: 'NATS', icon: 'simple-icons:natsdotio' },
-				{ name: 'RabbitMQ', icon: 'simple-icons:rabbitmq' },
-			],
-		},
-		{
-			category: 'Blockchain / Web3',
-			items: [
-				{ name: 'Solidity', icon: 'simple-icons:solidity' },
-				{ name: 'Solana', icon: 'simple-icons:solana' },
-				{ name: 'Web3.js', icon: 'simple-icons:web3dotjs' },
-				{ name: 'Ethers.js', icon: 'simple-icons:ethers' },
-			],
-		},
-	];
+		galleryIndexes[title] = api.selectedScrollSnap();
 
-	const databases = [
-		{
-			name: 'PostgreSQL',
-			icon: 'simple-icons:postgresql',
-		},
-		{
-			name: 'MongoDB',
-			icon: 'simple-icons:mongodb',
-		},
-		{
-			name: 'MySQL',
-			icon: 'simple-icons:mysql',
-		},
-		{
-			name: 'Redis',
-			icon: 'simple-icons:redis',
-		},
-	];
-
-	const databaseExpertise = [
-		{
-			icon: ZapIcon,
-			title: 'Queries Performáticas',
-			description: 'EXPLAIN ANALYZE, eliminação de N+1 e reescrita de subqueries como JOINs.',
-		},
-		{
-			icon: LayersIcon,
-			title: 'Indexação Avançada',
-			description: 'Índices compostos, parciais e GIN/GiST para full-text e dados geoespaciais.',
-		},
-		{
-			icon: DatabaseIcon,
-			title: 'Modelagem de Dados',
-			description: 'Schema multi-tenant com Row Level Security, soft deletes e particionamento.',
-		},
-		{
-			icon: ShieldCheckIcon,
-			title: 'Confiabilidade & Backup',
-			description: 'Replicação, backup automatizado, migrações seguras e monitoramento contínuo.',
-		},
-	];
-
-	const infras = [
-		{
-			name: 'Docker',
-			icon: 'simple-icons:docker',
-			description: 'Containerização e orquestração de serviços',
-		},
-		{
-			name: 'Linux',
-			icon: 'simple-icons:linux',
-			description: 'Administração de servidores e automação',
-		},
-		{
-			name: 'AWS',
-			icon: 'simple-icons:amazonwebservices',
-			description: 'EC2, S3, RDS, Lambda e serviços gerenciados',
-		},
-		{
-			name: 'Kubernetes',
-			icon: 'simple-icons:kubernetes',
-			description: 'Orquestração de containers em produção',
-		},
-		{
-			name: 'Terraform',
-			icon: 'simple-icons:terraform',
-			description: 'Infraestrutura como código (IaC)',
-		},
-		{
-			name: 'Datadog',
-			icon: 'simple-icons:datadog',
-			description: 'Observabilidade, monitoramento e alertas',
-		},
-		{
-			name: 'Git',
-			icon: 'simple-icons:git',
-			description: 'Versionamento e fluxo GitFlow',
-		},
-		{
-			name: 'Nginx',
-			icon: 'simple-icons:nginx',
-			description: 'Proxy reverso e configuração de servidores',
-		},
-	];
-
-	const designers = [
-		{
-			name: 'Blender',
-			icon: 'simple-icons:blender',
-		},
-		{
-			name: 'Figma',
-			icon: 'simple-icons:figma',
-		},
-		{
-			name: 'Photoshop',
-			icon: 'simple-icons:adobephotoshop',
-		},
-		{
-			name: 'Illustrator',
-			icon: 'simple-icons:adobeillustrator',
-		},
-		{
-			name: 'CorelDRAW',
-			icon: 'simple-icons:coreldraw',
-		},
-		{
-			name: 'Aseprite',
-			icon: 'simple-icons:aseprite',
-		},
-	];
-
-	const education = [
-		{
-			type: 'Graduação',
-			title: 'Tecnólogo em Análise e Desenvolvimento de Sistemas',
-			institution: 'Universidade Pitágoras Unopar Anhanguera',
-			year: '2025',
-			description: 'Conclusão em dez/2024 • Colação de grau em 04/02/2025',
-			link: 'https://diplomas.cogna.com.br/diploma-digital/validador/documento/academico/298.298.57c733344fd9',
-		},
-		{
-			type: 'Curso Técnico',
-			title: 'Técnico em Redes de Computadores',
-			institution: 'Escola Técnica Estadual Aderico Alves de Vasconcelos (ETE)',
-			year: '2019',
-			description: 'Ensino Médio integrado ao Curso Técnico • Goiana - PE',
-		},
-	];
-
-	const certificates = [
-		{
-			title: 'Curso completo de PostgreSQL! Do Básico ao Avançado v2026',
-			issuer: 'Udemy',
-			instructor: 'Vitor Mazuco',
-			hours: '49.5h',
-			date: 'Out 2026',
-			url: 'https://ude.my/UC-d4fb5435-d78b-4017-9c8a-4e5b70101748',
-		},
-		{
-			title: 'Formação Linux Completa: Do Básico ao Avançado',
-			issuer: 'Udemy',
-			instructor: 'Mateus Müller',
-			hours: '23h',
-			date: 'Out 2026',
-			url: 'https://ude.my/UC-0ca1d126-c2e4-41e4-9e9b-e12fff040875',
-		},
-		{
-			title: 'Nest.js e React.js do zero ao avançado com TypeScript',
-			issuer: 'Udemy',
-			instructor: 'Júlio Souza Sena',
-			hours: '43.5h',
-			date: 'Dez 2024',
-			url: 'https://ude.my/UC-faf2500f-9e2f-4c61-9d68-a95355a0e8a4',
-		},
-		{
-			title: 'Node.js do básico ao avançado com JS e TS',
-			issuer: 'Udemy',
-			instructor: 'Júlio Souza Sena',
-			hours: '32.5h',
-			date: 'Ago 2024',
-			url: 'https://ude.my/UC-b12cb0ef-4510-40bb-8567-1dd76c178fcc',
-		},
-		{
-			title: 'NextJS do zero ao avançado na prática 2024',
-			issuer: 'Udemy',
-			instructor: 'Matheus Fraga',
-			hours: '25.5h',
-			date: 'Ago 2024',
-			url: 'https://ude.my/UC-47f48ada-e7d6-4b1b-be99-67a6dd11c6bd',
-		},
-		{
-			title: 'React do Zero a Maestria (hooks, router, API, Projetos)',
-			issuer: 'Udemy',
-			instructor: 'Matheus Battisti',
-			hours: '30.5h',
-			date: 'Jan 2024',
-			url: 'https://ude.my/UC-36050276-45a0-4d8b-8e15-5b70cbe7fe13',
-		},
-		{
-			title: 'TypeScript do básico ao avançado (React, Express)',
-			issuer: 'Udemy',
-			instructor: 'Matheus Battisti',
-			hours: '14h',
-			date: 'Jan 2024',
-			url: 'https://ude.my/UC-abc295ae-ff8c-4d31-a331-438c34de81d3',
-		},
-		{
-			title: 'Introdução ao Solidity',
-			issuer: 'Udemy',
-			instructor: 'João Paulo Morais Graca',
-			hours: '17.5h',
-			date: 'Abr 2024',
-			url: 'https://ude.my/UC-965c6148-1b87-4af9-86ef-2092e6ad4bac',
-		},
-	];
+		api.on('select', () => {
+			galleryIndexes[title] = api.selectedScrollSnap();
+		});
+	}
 </script>
 
 <main>
@@ -347,7 +68,7 @@
 				Código limpo, alta performance, <span class="text-primary">sistemas que escalam.</span>
 			</Typography.H1>
 			<Typography.P class="mt-6 max-w-lg text-center">
-				Desenvolvedor full-stack com foco em performance e sistemas distribuídos. Go, Rust, Node.js, React, Svelte, Web3 (Solidity & Solana) e bancos relacionais e NoSQL.
+				Desenvolvedor full-stack com foco em performance e sistemas distribuídos. Java, Go, Rust, Node.js, React, Svelte, Web3 (Solidity & Solana) e bancos relacionais e NoSQL.
 			</Typography.P>
 
 			<div class="mt-10 flex flex-col gap-3 max-sm:w-full sm:flex-row">
@@ -376,8 +97,8 @@
 				<Typography.P class="leading-tight">Tecnologias<br />dominadas</Typography.P>
 			</div>
 			<div class="flex items-center gap-3">
-				<Typography.P class="text-3xl font-bold tracking-tight text-primary">100+</Typography.P>
-				<Typography.P class="leading-tight">Code<br />commits</Typography.P>
+				<Typography.P class="text-3xl font-bold tracking-tight text-primary">15+</Typography.P>
+				<Typography.P class="leading-tight">Cursos<br />certificados</Typography.P>
 			</div>
 		</div>
 	</section>
@@ -399,24 +120,30 @@
 					}}
 					plugins={[
 						Autoplay({
-							delay: 2000,
+							delay: 3200,
+							stopOnMouseEnter: true,
+							stopOnInteraction: false,
 						}),
 					]}
 				>
 					<Carousel.Content class="-ms-1">
 						{#each privateProjects as privateProject (privateProject.title)}
+							{@const gallery = privateProject.images?.length ? privateProject.images : [privateProject.image]}
+							{@const activeIndex = galleryIndexes[privateProject.title] ?? 0}
 							<Carousel.Item class="ps-1 md:basis-1/2 lg:basis-1/3">
 								<div class="h-full p-1">
 									<Dialog.Root>
-										<Dialog.Trigger>
+										<Dialog.Trigger class="block h-full w-full text-start">
 											<div
 												class="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/30"
 											>
-												<div class="flex aspect-video flex-1 items-center justify-center bg-muted p-2 text-muted-foreground">
-													<img class="h-full w-full rounded-lg object-cover" alt={privateProject.title} src={privateProject.image} />
+												<div class="p-2">
+													<div class="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+														<img class="absolute inset-0 size-full object-cover object-top" alt={privateProject.title} src={privateProject.image} />
+													</div>
 												</div>
 
-												<div class="flex h-52 flex-col gap-3 p-5">
+												<div class="flex flex-1 flex-col gap-3 p-5">
 													<div class="flex items-center justify-between">
 														<span class="font-mono text-xs text-muted-foreground">{privateProject.year}</span>
 														{#if privateProject.badge}
@@ -426,7 +153,7 @@
 
 													<div class="text-left">
 														<Typography.H3 class="text-base">{privateProject.title}</Typography.H3>
-														<Typography.P class="mt-1.5 line-clamp-2 leading-relaxed">{privateProject.description}</Typography.P>
+														<Typography.P class="mt-1.5 line-clamp-2 leading-relaxed">{privateProject.summary ?? privateProject.description}</Typography.P>
 													</div>
 
 													<div class="mt-auto flex flex-wrap gap-1.5">
@@ -437,35 +164,139 @@
 												</div>
 											</div>
 										</Dialog.Trigger>
-										<Dialog.Content class="overflow-hidden sm:max-w-3xl">
-											<Dialog.Header></Dialog.Header>
-											<div class="grid md:grid-cols-[1fr_350px]">
-												<div class="flex min-h-60 items-center justify-center bg-muted">
-													<div class="flex flex-1 items-center justify-center bg-muted p-2 text-muted-foreground">
-														<img class="w-full rounded-lg" alt={privateProject.title} src={privateProject.image} />
-													</div>
-												</div>
+										<Dialog.Content class="max-h-[90vh] min-w-0 gap-0 overflow-hidden p-0 sm:max-w-6xl">
+											<div
+												class="grid max-h-[90vh] w-full min-w-0 grid-cols-[minmax(0,1fr)] overflow-x-hidden overflow-y-auto md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] md:overflow-hidden"
+											>
+												<!-- preview + métricas -->
+												<div class="flex min-w-0 flex-col border-border bg-linear-to-br from-primary/10 via-muted to-muted md:border-r">
+													<div class="flex flex-1 flex-col justify-center gap-3 p-3">
+														{#if gallery.length > 1}
+															<Carousel.Root
+																class="w-full overflow-hidden rounded-lg border border-border bg-background/40 shadow-xl"
+																opts={{ loop: true }}
+																setApi={(api) => bindGallery(privateProject.title, api)}
+															>
+																<Carousel.Content class="ms-0">
+																	{#each gallery as src, i (src)}
+																		<Carousel.Item class="ps-0">
+																			<div class="aspect-4/3 w-full">
+																				<img
+																					class="size-full object-contain"
+																					alt={`Captura de tela ${i + 1} do projeto ${privateProject.title}`}
+																					loading={i === 0 ? 'eager' : 'lazy'}
+																					{src}
+																				/>
+																			</div>
+																		</Carousel.Item>
+																	{/each}
+																</Carousel.Content>
+																<Carousel.Previous class="inset-s-2" />
+																<Carousel.Next class="inset-e-2" />
+																<Badge class="absolute right-2 bottom-2" variant="secondary">{activeIndex + 1} / {gallery.length}</Badge>
+															</Carousel.Root>
 
-												<div class="flex max-h-[50vh] flex-col gap-4 overflow-y-auto p-6">
-													<div class="flex items-center justify-between">
-														<span class="font-mono text-xs text-muted-foreground">{privateProject.year}</span>
-														{#if privateProject.badge}
-															<Badge class="text-primary md:mr-8" variant="secondary">{privateProject.badge}</Badge>
+															<ul class="m-0 flex max-w-full list-none gap-2 overflow-x-auto p-0 pb-1">
+																{#each gallery as src, i (src)}
+																	<li class="shrink-0">
+																		<Button
+																			class={cn('h-12 w-20 overflow-hidden p-0', activeIndex === i ? 'border-primary' : 'opacity-60 hover:opacity-100')}
+																			aria-label={`Ver imagem ${i + 1}`}
+																			onclick={() => galleryApis[privateProject.title]?.scrollTo(i)}
+																			size="icon"
+																			variant="outline"
+																		>
+																			<img class="size-full object-cover" alt="" loading="lazy" {src} />
+																		</Button>
+																	</li>
+																{/each}
+															</ul>
+														{:else}
+															<div class="aspect-4/3 w-full overflow-hidden rounded-lg border border-border bg-background/40 shadow-xl">
+																<img class="size-full object-contain" alt={`Captura de tela do projeto ${privateProject.title}`} src={gallery[0]} />
+															</div>
 														{/if}
 													</div>
 
-													<div>
-														<Typography.H3 class="text-xl">{privateProject.title}</Typography.H3>
-														<Typography.P class="mt-2 leading-relaxed text-muted-foreground">
-															{privateProject.description}
-														</Typography.P>
+													{#if privateProject.metrics?.length}
+														<div class="grid grid-cols-3 divide-x divide-border border-t border-border bg-background/60">
+															{#each privateProject.metrics as metric (metric.label)}
+																<div class="px-3 py-4 text-center">
+																	<p class="text-lg font-bold tracking-tight text-primary sm:text-xl">{metric.value}</p>
+																	<p class="mt-0.5 text-[11px] leading-tight text-muted-foreground">{metric.label}</p>
+																</div>
+															{/each}
+														</div>
+													{/if}
+												</div>
+
+												<!-- content -->
+												<div class="flex min-w-0 flex-col gap-6 p-6 md:max-h-[90vh] md:overflow-y-auto">
+													<div class="pr-10">
+														<div class="flex flex-wrap items-center gap-2">
+															<span class="font-mono text-xs text-muted-foreground">{privateProject.year}</span>
+															{#if privateProject.badge}
+																<Badge class="text-primary" variant="secondary">{privateProject.badge}</Badge>
+															{/if}
+															{#if privateProject.role}
+																<Badge variant="outline">{privateProject.role}</Badge>
+															{/if}
+														</div>
+
+														<Dialog.Title class="mt-2 text-2xl font-bold tracking-tight">{privateProject.title}</Dialog.Title>
+														<Dialog.Description class="mt-2 text-sm leading-relaxed text-muted-foreground">
+															{privateProject.summary ?? privateProject.description}
+														</Dialog.Description>
 													</div>
 
-													<div class="mt-auto flex flex-wrap gap-1.5">
-														{#each privateProject.tags as tag (tag)}
-															<Badge class="text-primary" variant="secondary">{tag}</Badge>
-														{/each}
-													</div>
+													{#if privateProject.highlights?.length}
+														<div>
+															<p class="font-mono text-[11px] tracking-widest text-primary uppercase">O que eu construí</p>
+															<ul class="mt-3 space-y-3">
+																{#each privateProject.highlights as item (item.title)}
+																	<li class="flex gap-3">
+																		<Icon class="mt-0.5 size-4 shrink-0 text-primary" icon="lucide:circle-check" />
+																		<p class="text-sm leading-snug text-muted-foreground">
+																			<strong class="font-semibold text-foreground">{item.title}.</strong>
+																			{item.text}
+																		</p>
+																	</li>
+																{/each}
+															</ul>
+														</div>
+													{/if}
+
+													{#if privateProject.stack?.length}
+														<div>
+															<p class="font-mono text-[11px] tracking-widest text-primary uppercase">Stack utilizada</p>
+															<div class="mt-3 space-y-3">
+																{#each privateProject.stack as group (group.category)}
+																	<div class="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
+																		<span class="w-24 shrink-0 font-mono text-[11px] text-muted-foreground uppercase">{group.category}</span>
+																		<ul class="m-0 flex list-none flex-wrap gap-1.5 p-0">
+																			{#each group.items as tech (tech.name)}
+																				<li class="flex items-center gap-1.5 rounded-md border border-border bg-background px-2 py-1 text-xs font-medium">
+																					<Icon class="size-3.5 text-primary" icon={tech.icon} />
+																					{tech.name}
+																				</li>
+																			{/each}
+																		</ul>
+																	</div>
+																{/each}
+															</div>
+														</div>
+													{/if}
+
+													{#if privateProject.links?.length}
+														<div class="mt-auto flex flex-wrap gap-2 pt-2">
+															{#each privateProject.links as link (link.href)}
+																<Button href={link.href} rel="noopener noreferrer" size="sm" target="_blank" variant="outline">
+																	{link.label}
+																	<Icon icon="lucide:external-link" />
+																</Button>
+															{/each}
+														</div>
+													{/if}
 												</div>
 											</div>
 										</Dialog.Content>
@@ -723,7 +554,9 @@
 						}}
 						plugins={[
 							Autoplay({
-								delay: 3200,
+								delay: 3500,
+								stopOnMouseEnter: true,
+								stopOnInteraction: false,
 							}),
 						]}
 					>
@@ -776,7 +609,7 @@
 		</div>
 	</section>
 
-	<!-- sobre -->
+	<!-- about -->
 	<section class="border-b border-border py-16" aria-labelledby="about">
 		<div class="mx-auto max-w-4xl px-6">
 			<div class="grid items-center gap-10 md:grid-cols-2">
@@ -786,10 +619,6 @@
 						<Typography.P>
 							Sou Davi Gomes, desenvolvedor full-stack com mais de 5 anos de experiência construindo sistemas que realmente funcionam em produção. Do backend em Rust e Go até
 							interfaces em React e Svelte.
-						</Typography.P>
-						<Typography.P>
-							Atualmente estou construindo o <strong class="text-foreground">IQContábil</strong>, uma plataforma SaaS para o mercado contábil brasileiro, focada em performance e
-							escalabilidade.
 						</Typography.P>
 						<Typography.P>Também tenho experiência com Web3, tendo desenvolvido smart contracts em Solidity e aplicações na rede Solana.</Typography.P>
 					</div>

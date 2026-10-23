@@ -1,6 +1,8 @@
 <script lang="ts">
 	import './layout.css';
 
+	import { SITE } from '../constants/site';
+
 	import { cn } from '$lib/utils';
 	import { ModeWatcher, toggleMode } from 'mode-watcher';
 
@@ -43,32 +45,83 @@
 		},
 	];
 
+	const jsonLd = {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'WebSite',
+				'@id': `${SITE.url}/#website`,
+				url: SITE.url,
+				name: SITE.name,
+				inLanguage: 'pt-BR',
+			},
+			{
+				'@type': 'Person',
+				'@id': `${SITE.url}/#person`,
+				name: SITE.name,
+				url: SITE.url,
+				image: SITE.avatar,
+				jobTitle: SITE.jobTitle,
+				description: SITE.description,
+				knowsAbout: SITE.knowsAbout,
+				sameAs: [SITE.github, SITE.linkedin],
+			},
+		],
+	};
+
+	const jsonLdTag = '<script type="application/ld+json">' + JSON.stringify(jsonLd).replace(/</g, '\\u003c') + '<' + '/script>';
+
 	let { children } = $props();
 </script>
 
 <svelte:head>
-	<title>Davi Gomes | Full-stack Developer</title>
+	<title>{SITE.title}</title>
+	<meta name="description" content={SITE.description} />
+	<meta name="author" content={SITE.name} />
+	<meta name="robots" content="index, follow, max-image-preview:large" />
+	<link href={SITE.url} rel="canonical" />
 	<link href={favicon} rel="icon" />
+
+	<!-- Open Graph (WhatsApp, LinkedIn, Facebook, Discord) -->
+	<meta content="website" property="og:type" />
+	<meta content={SITE.name} property="og:site_name" />
+	<meta content={SITE.locale} property="og:locale" />
+	<meta content={SITE.url} property="og:url" />
+	<meta content={SITE.title} property="og:title" />
+	<meta content={SITE.description} property="og:description" />
+	<meta content={SITE.ogImage} property="og:image" />
+	<meta content="1200" property="og:image:width" />
+	<meta content="630" property="og:image:height" />
+	<meta content="Davi Gomes – Desenvolvedor Full-stack" property="og:image:alt" />
+
+	<!-- Twitter / X -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={SITE.title} />
+	<meta name="twitter:description" content={SITE.description} />
+	<meta name="twitter:image" content={SITE.ogImage} />
+
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- JSON-LD estático -->
+	{@html jsonLdTag}
 </svelte:head>
 
-<ModeWatcher defaultMode="dark" defaultTheme="dark" track={false} />
+<ModeWatcher defaultMode="dark" modeStorageKey="davi-theme-v2" />
 
 <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
 	<nav class="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
 		<a class="flex items-center gap-2" href="/">
-			<img class="size-8" alt="dev" src={favicon} />
+			<img class="size-8" alt="Logo de Davi Gomes" src={favicon} />
 			<span class="font-bold tracking-tight">Davi Gomes</span>
 		</a>
 
 		<ul
-			class="[&_a]:text-muted-foreground [&_a]:text-sm [&_a]:font-medium [&_a]:transition-colors [&_a:hover]:text-primary hidden items-center gap-6 min-[900px]:flex list-none m-0 p-0"
+			class="m-0 hidden list-none items-center gap-6 p-0 min-[900px]:flex [&_a]:text-sm [&_a]:font-medium [&_a]:text-muted-foreground [&_a]:transition-colors [&_a:hover]:text-primary"
 		>
 			{#each links as link (link.href)}
 				<li><a href={link.href}>{link.label}</a></li>
 			{/each}
 		</ul>
 
-		<div class="min-[900px]:flex items-center gap-3 hidden">
+		<div class="hidden items-center gap-3 min-[900px]:flex">
 			<Button onclick={toggleMode} size="icon-sm" variant="outline">
 				<SunIcon class="size-[1.2rem] scale-100 rotate-0 transition-all! dark:scale-0 dark:-rotate-90" />
 				<MoonIcon class="absolute size-[1.2rem] scale-0 rotate-90 transition-all! dark:scale-100 dark:rotate-0" />
@@ -88,16 +141,16 @@
 				<Sheet.Header>
 					<Sheet.Title>
 						<a class="flex items-center gap-2" href="/">
-							<img class="size-8" alt="dev" src={favicon} />
+							<img class="size-8" alt="Logo de Davi Gomes" src={favicon} />
 							<span class="font-bold tracking-tight">Davi Gomes</span>
 						</a>
 					</Sheet.Title>
 				</Sheet.Header>
 
-				<ul class="flex flex-col gap-1 list-none m-0 p-0 mt-6 px-4">
+				<ul class="m-0 mt-6 flex list-none flex-col gap-1 p-0 px-4">
 					{#each links as link (link.href)}
 						<li>
-							<a class="text-muted-foreground text-sm font-medium transition-colors hover:text-primary block py-2" href={link.href}>
+							<a class="block py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" href={link.href}>
 								{link.label}
 							</a>
 						</li>
@@ -106,7 +159,7 @@
 
 				<Sheet.Footer>
 					<Button class="w-full" onclick={toggleMode} size="sm" variant="outline">
-						<div class="relative flex items-center justify-center size-[1.2rem]">
+						<div class="relative flex size-[1.2rem] items-center justify-center">
 							<SunIcon class="absolute size-[1.2rem] scale-100 rotate-0 transition-all! dark:scale-0 dark:-rotate-90" />
 							<MoonIcon class="absolute size-[1.2rem] scale-0 rotate-90 transition-all! dark:scale-100 dark:rotate-0" />
 						</div>
@@ -125,9 +178,9 @@
 {@render children()}
 
 <footer class="border-t border-border">
-	<div class="mx-auto max-w-5xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+	<div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 p-6 sm:flex-row">
 		<div class="flex items-center gap-2">
-			<img class="size-8" alt="dev" src={favicon} />
+			<img class="size-8" alt="Logo de Davi Gomes" src={favicon} />
 			<span class="font-bold tracking-tight">Davi Gomes</span>
 		</div>
 
@@ -135,19 +188,19 @@
 			© {new Date().getFullYear()} Davi Gomes. Todos os direitos reservados.
 		</Typography.P>
 
-		<ul class="flex items-center gap-3 list-none m-0 p-0">
+		<ul class="m-0 flex list-none items-center gap-3 p-0">
 			<li>
-				<a class="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub" href="https://github.com/davigomesdev" target="_blank">
+				<a class="text-muted-foreground transition-colors hover:text-primary" aria-label="GitHub" href="https://github.com/davigomesdev" target="_blank">
 					<Icon class="size-4" icon="simple-icons:github" />
 				</a>
 			</li>
 			<li>
-				<a class="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn" href="https://linkedin.com/in/davigomesdev" target="_blank">
+				<a class="text-muted-foreground transition-colors hover:text-primary" aria-label="LinkedIn" href="https://linkedin.com/in/davigomesdev" target="_blank">
 					<Icon class="size-4" icon="simple-icons:linkedin" />
 				</a>
 			</li>
 			<li>
-				<a class="text-muted-foreground hover:text-primary transition-colors" aria-label="WhatsApp" href="https://wa.me/5581989714939" target="_blank">
+				<a class="text-muted-foreground transition-colors hover:text-primary" aria-label="WhatsApp" href="https://wa.me/5581989714939" target="_blank">
 					<Icon class="size-4" icon="simple-icons:whatsapp" />
 				</a>
 			</li>
