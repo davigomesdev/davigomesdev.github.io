@@ -227,6 +227,214 @@ export const privateProjects: PrivateProject[] = [
 		tags: ['React Native', 'Expo', 'TypeScript', 'TanStack Query'],
 	},
 	{
+		year: '2021',
+		badge: null,
+		image: '/projects/etp/cover.png',
+		images: ['/projects/etp/cover.png', '/projects/etp/01.png', '/projects/etp/02.png', '/projects/etp/03.png'],
+		title: 'ETP (Site Institucional)',
+		description:
+			'Site institucional da ETP, escola de cursos técnicos com unidades em Pernambuco, pensado para apresentar a escola, os cursos e converter visitantes em alunos. A página inicial traz um banner em carrossel com os diferenciais da escola (foco na prática, agência de empregabilidade e parcelas fixas), cartões de benefícios e a busca de cursos por área, como saúde, industriais e negócios. Uma vitrine de cursos em carrossel apresenta cada formação com descrição resumida e botão de saiba mais, ao lado de indicadores de resultado como número de cursos, alunos e formados. A seção de unidades mostra cada endereço com foto, e o blog reúne as últimas notícias, eventos e visitas técnicas. O site também oferece atalhos para o portal do aluno, acesso ao EAD, área administrativa e teste vocacional, além de um formulário de indicação (indique e ganhe prêmios) em modal, onde o aluno informa seus dados e os amigos indicados, e um botão fixo de contato por WhatsApp. O frontend foi desenvolvido em React com styled-components e o backend em PHP.',
+		summary: 'Site institucional da escola de cursos técnicos ETP, com vitrine de cursos, unidades, blog de notícias, programa de indicação e atalhos para portais do aluno.',
+		role: 'Full-stack',
+		metrics: [
+			{ value: 'Institucional', label: 'site da escola de cursos técnicos' },
+			{ value: 'Cursos', label: 'vitrine por área de formação' },
+			{ value: 'Indicação', label: 'formulário de indique e ganhe' },
+		],
+		highlights: [
+			{
+				title: 'Home com banner e diferenciais',
+				text: 'Carrossel de destaque com os diferenciais da escola e cartões de benefícios logo na primeira dobra.',
+			},
+			{
+				title: 'Vitrine de cursos',
+				text: 'Cursos em carrossel com descrição resumida e acesso rápido ao detalhe, além de busca por área (saúde, industriais, negócios).',
+			},
+			{
+				title: 'Unidades',
+				text: 'Seção com foto e endereço de cada unidade da escola.',
+			},
+			{
+				title: 'Blog e notícias',
+				text: 'Últimas notícias com categorias como eventos e visitas técnicas, em destaque e lista lateral.',
+			},
+			{
+				title: 'Indique e ganhe prêmios',
+				text: 'Modal com formulário de indicação: dados do aluno, unidade e múltiplos amigos indicados.',
+			},
+			{
+				title: 'Portais e contato',
+				text: 'Atalhos para portal do aluno, EAD, área administrativa e teste vocacional, com botão fixo de WhatsApp.',
+			},
+			{
+				title: 'Interface com styled-components',
+				text: 'Componentes React estilizados com styled-components, mantendo a identidade visual azul e verde da escola em todas as seções.',
+			},
+		],
+		stack: [
+			{ category: 'Backend', items: [{ name: 'PHP', icon: 'simple-icons:php' }] },
+			{
+				category: 'Frontend',
+				items: [
+					{ name: 'React', icon: 'simple-icons:react' },
+					{ name: 'styled-components', icon: 'simple-icons:styledcomponents' },
+				],
+			},
+		],
+		tags: ['PHP', 'React', 'styled-components', 'Site Institucional'],
+	},
+
+	{
+		year: '2025',
+		badge: null,
+		image: '/projects/monsters/cover.gif',
+		title: 'Monsters (NFT Game)',
+		description:
+			'Jogo NFT multiplayer em tempo real com batalhas por turnos. O backend em Go gerencia milhares de salas simultâneas com um RoomManager concorrente usando sync.RWMutex e um game loop de 250ms por tick, garantindo consistência sem race conditions. Cada sala é uma entidade isolada com lifecycle próprio — waiting, started, finished e expired — processada de forma assíncrona via goroutines. O sistema de WebSocket transmite pacotes tipados para cada jogador individualmente, nunca expondo dados do adversário. Bots jogam com IA baseada em heurísticas de energia e vida, simulando comportamento humano com delay aleatório. Smart contracts em Solidity gerenciam ownership dos monstros NFT on-chain, com o frontend em TypeScript e WebGL renderizando as batalhas em tempo real.',
+		summary: 'Jogo NFT multiplayer em tempo real com batalhas por turnos: backend concorrente em Go e ownership dos monstros on-chain via Solidity.',
+		role: 'Full-stack',
+		metrics: [
+			{ value: 'Milhares', label: 'de salas simultâneas' },
+			{ value: '250ms', label: 'por tick do game loop' },
+			{ value: 'On-chain', label: 'ownership em Solidity' },
+		],
+		highlights: [
+			{
+				title: 'Concorrência sem race conditions',
+				text: 'RoomManager com sync.RWMutex e game loop de 250ms por tick.',
+			},
+			{
+				title: 'Salas isoladas e assíncronas',
+				text: 'Lifecycle próprio (waiting, started, finished, expired) processado via goroutines.',
+			},
+			{
+				title: 'WebSocket com pacotes tipados',
+				text: 'Cada jogador recebe só o que pode ver; dados do adversário nunca são expostos.',
+			},
+			{
+				title: 'Bots com IA heurística',
+				text: 'Decisões baseadas em energia e vida, com delay aleatório para simular comportamento humano.',
+			},
+			{
+				title: 'Outbox Pattern com Kafka',
+				text: 'Eventos gravados junto com a transação e publicados no Kafka, garantindo consistência entre o banco e os consumidores.',
+			},
+			{
+				title: 'Web3 + WebGL',
+				text: 'Smart contracts em Solidity para ownership dos NFTs e frontend em TypeScript com WebGL renderizando as batalhas.',
+			},
+		],
+		stack: [
+			{ category: 'Backend', items: [{ name: 'Go', icon: 'simple-icons:go' }] },
+			{ category: 'Realtime', items: [{ name: 'WebSocket', icon: 'lucide:radio-tower' }] },
+			{ category: 'Dados', items: [{ name: 'PostgreSQL', icon: 'simple-icons:postgresql' }] },
+			{ category: 'Mensageria', items: [{ name: 'Kafka', icon: 'simple-icons:apachekafka' }] },
+			{ category: 'Blockchain', items: [{ name: 'Solidity', icon: 'simple-icons:solidity' }] },
+			{
+				category: 'Frontend',
+				items: [
+					{ name: 'TypeScript', icon: 'simple-icons:typescript' },
+					{ name: 'WebGL', icon: 'simple-icons:webgl' },
+				],
+			},
+		],
+		tags: ['Go', 'PostgreSQL', 'Kafka', 'WebSocket', 'Solidity', 'TypeScript', 'WebGL'],
+	},
+	{
+		year: '2025',
+		badge: null,
+		image: '/projects/candy-swap/cover.png',
+		images: ['/projects/candy-swap/cover.png', '/projects/candy-swap/01.png', '/projects/candy-swap/02.png', '/projects/candy-swap/03.png'],
+		title: 'Candy Swap',
+		description:
+			'Plataforma Web3 de swap de tokens com presale, onde os usuários trocam ativos direto pela carteira usando contratos inteligentes em Solidity. Além da troca on-chain, o presale permite comprar o token via Pix, aproximando quem não tem cripto da compra inicial: o pagamento em reais é confirmado e o token é liberado ao comprador na blockchain.',
+		summary: 'Plataforma Web3 de swap de tokens com presale, com contratos em Solidity e compra do token via Pix.',
+		role: 'Full-stack',
+		metrics: [
+			{ value: 'Swap', label: 'troca de tokens on-chain' },
+			{ value: 'Presale', label: 'compra do token via Pix' },
+			{ value: 'Solidity', label: 'contratos inteligentes' },
+		],
+		highlights: [
+			{
+				title: 'Swap on-chain',
+				text: 'Troca de tokens pela carteira do usuário, executada por contratos inteligentes em Solidity.',
+			},
+			{
+				title: 'Presale com Pix',
+				text: 'Compra do token na pré-venda pagando em reais por Pix, sem precisar ter cripto antes.',
+			},
+			{
+				title: 'Integração Web3',
+				text: 'Conexão com carteiras e interação com os contratos direto pela interface.',
+			},
+		],
+		stack: [
+			{ category: 'Blockchain', items: [{ name: 'Solidity', icon: 'simple-icons:solidity' }] },
+			{ category: 'Pagamentos', items: [{ name: 'Pix', icon: 'lucide:qr-code' }] },
+		],
+		tags: ['Solidity', 'Web3', 'Swap', 'Presale', 'Pix'],
+	},
+	{
+		year: '2026',
+		badge: null,
+		image: '/projects/gympfy/cover.png',
+		images: ['/projects/gympfy/cover.png', '/projects/gympfy/01.png', '/projects/gympfy/02.png', '/projects/gympfy/03.png'],
+		title: 'Gympfy (Presale Solana)',
+		description:
+			'Presale do token Gympfy ($GYM) na rede Solana, em que os usuários compram o token direto pela carteira durante a pré-venda. O programa on-chain, escrito em Rust, cria o token no padrão Token-2022 com metadata e guarda os fundos e o estoque em um cofre controlado por uma PDA, de modo que nenhuma chave privada tem custódia dos ativos. O preço do token é configurável, e o contrato conta com um sistema de indicação (referral) que vincula compradores a quem os indicou. O frontend em React e TypeScript, estilizado com Tailwind CSS, integra o wallet adapter da Solana para conectar carteiras, consultar o estado da presale e enviar as transações de compra.',
+		summary: 'Presale do token $GYM na Solana, com programa em Rust (Token-2022, cofre via PDA, preço configurável e referral) e frontend com conexão de carteira.',
+		role: 'Full-stack',
+		metrics: [
+			{ value: 'Solana', label: 'programa on-chain em Rust' },
+			{ value: 'Token-2022', label: 'token com metadata' },
+			{ value: 'Referral', label: 'sistema de indicação on-chain' },
+		],
+		highlights: [
+			{
+				title: 'Programa em Rust na Solana',
+				text: 'Lógica da presale executada on-chain, com compra do token direto pela carteira do usuário.',
+			},
+			{
+				title: 'Token-2022 com metadata',
+				text: 'Token criado no padrão Token-2022, com metadata associada ao mint.',
+			},
+			{
+				title: 'Cofre com PDA',
+				text: 'Fundos e estoque sob autoridade de uma PDA, sem chave privada com custódia dos ativos.',
+			},
+			{
+				title: 'Preço configurável',
+				text: 'Parâmetros de preço da presale ajustáveis pela autoridade do programa.',
+			},
+			{
+				title: 'Sistema de referral',
+				text: 'Compradores vinculados a quem os indicou, com a indicação registrada on-chain.',
+			},
+			{
+				title: 'Frontend com wallet adapter',
+				text: 'Conexão de carteiras Solana, leitura do estado da presale e envio das transações de compra, com interface em Tailwind CSS.',
+			},
+		],
+		stack: [
+			{
+				category: 'Blockchain',
+				items: [
+					{ name: 'Solana', icon: 'simple-icons:solana' },
+					{ name: 'Rust', icon: 'simple-icons:rust' },
+				],
+			},
+			{
+				category: 'Frontend',
+				items: [
+					{ name: 'TypeScript', icon: 'simple-icons:typescript' },
+					{ name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss' },
+				],
+			},
+		],
+		tags: ['Solana', 'Rust', 'TypeScript', 'Tailwind CSS', 'Web3', 'Presale'],
+	},
+	{
 		year: '2024',
 		badge: null,
 		image: '/projects/liderlocadora/cover.png',
@@ -300,59 +508,63 @@ export const privateProjects: PrivateProject[] = [
 		tags: ['NestJS', 'React Native', 'React', 'PostgreSQL'],
 	},
 	{
-		year: '2025',
+		year: '2024',
 		badge: null,
-		image: '/projects/monsters/cover.gif',
-		title: 'Monsters (NFT Game)',
+		image: '/projects/liderlocadora-app/cover.jpeg',
+		images: [
+			'/projects/liderlocadora-app/cover.jpeg',
+			'/projects/liderlocadora-app/01.png',
+			'/projects/liderlocadora-app/02.jpeg',
+			'/projects/liderlocadora-app/03.jpeg',
+			'/projects/liderlocadora-app/04.jpeg',
+			'/projects/liderlocadora-app/05.png',
+		],
+		title: 'Liderlocadora (App)',
 		description:
-			'Jogo NFT multiplayer em tempo real com batalhas por turnos. O backend em Go gerencia milhares de salas simultâneas com um RoomManager concorrente usando sync.RWMutex e um game loop de 250ms por tick, garantindo consistência sem race conditions. Cada sala é uma entidade isolada com lifecycle próprio — waiting, started, finished e expired — processada de forma assíncrona via goroutines. O sistema de WebSocket transmite pacotes tipados para cada jogador individualmente, nunca expondo dados do adversário. Bots jogam com IA baseada em heurísticas de energia e vida, simulando comportamento humano com delay aleatório. Smart contracts em Solidity gerenciam ownership dos monstros NFT on-chain, com o frontend em TypeScript e WebGL renderizando as batalhas em tempo real.',
-		summary: 'Jogo NFT multiplayer em tempo real com batalhas por turnos: backend concorrente em Go e ownership dos monstros on-chain via Solidity.',
-		role: 'Full-stack',
+			'Aplicativo mobile da plataforma Liderlocadora, criado para levar a rotina de campo das franquias de locação de motos para o celular. O fluxo principal é a vistoria digital em etapas: o vistoriador preenche o formulário, captura fotos da moto, coleta a assinatura na própria tela e gera o laudo em PDF. A sessão é persistente e segura, com refresh token, e o app consome a mesma API multi-tenant do painel administrativo, respeitando o isolamento de dados de cada franquia. Desenvolvido em React Native com Expo e TypeScript.',
+		summary: 'App mobile de campo da Liderlocadora: vistoria em etapas com fotos, assinatura digital e geração de laudo em PDF.',
+		role: 'Mobile',
 		metrics: [
-			{ value: 'Milhares', label: 'de salas simultâneas' },
-			{ value: '250ms', label: 'por tick do game loop' },
-			{ value: 'On-chain', label: 'ownership em Solidity' },
+			{ value: 'Mobile', label: 'React Native + Expo' },
+			{ value: 'Vistoria', label: 'em etapas, com fotos e assinatura' },
+			{ value: 'PDF', label: 'laudo gerado no app' },
 		],
 		highlights: [
 			{
-				title: 'Concorrência sem race conditions',
-				text: 'RoomManager com sync.RWMutex e game loop de 250ms por tick.',
+				title: 'Vistoria em etapas',
+				text: 'Formulário dividido em passos, guiando o vistoriador do início ao fim da inspeção da moto.',
 			},
 			{
-				title: 'Salas isoladas e assíncronas',
-				text: 'Lifecycle próprio (waiting, started, finished, expired) processado via goroutines.',
+				title: 'Captura de fotos',
+				text: 'Registro fotográfico direto pela câmera do celular, anexado ao laudo da vistoria.',
 			},
 			{
-				title: 'WebSocket com pacotes tipados',
-				text: 'Cada jogador recebe só o que pode ver; dados do adversário nunca são expostos.',
+				title: 'Assinatura digital',
+				text: 'Assinatura coletada na tela do dispositivo, sem papel.',
 			},
 			{
-				title: 'Bots com IA heurística',
-				text: 'Decisões baseadas em energia e vida, com delay aleatório para simular comportamento humano.',
+				title: 'Laudo em PDF',
+				text: 'Geração do PDF da vistoria no próprio app, pronto para compartilhar ou arquivar.',
 			},
 			{
-				title: 'Outbox Pattern com Kafka',
-				text: 'Eventos gravados junto com a transação e publicados no Kafka, garantindo consistência entre o banco e os consumidores.',
+				title: 'Sessão segura',
+				text: 'Autenticação com refresh token para manter o usuário logado com segurança.',
 			},
 			{
-				title: 'Web3 + WebGL',
-				text: 'Smart contracts em Solidity para ownership dos NFTs e frontend em TypeScript com WebGL renderizando as batalhas.',
+				title: 'Integração multi-tenant',
+				text: 'Consumo da API compartilhada com o painel web, com dados isolados por franquia.',
 			},
 		],
 		stack: [
-			{ category: 'Backend', items: [{ name: 'Go', icon: 'simple-icons:go' }] },
-			{ category: 'Realtime', items: [{ name: 'WebSocket', icon: 'lucide:radio-tower' }] },
-			{ category: 'Dados', items: [{ name: 'PostgreSQL', icon: 'simple-icons:postgresql' }] },
-			{ category: 'Mensageria', items: [{ name: 'Kafka', icon: 'simple-icons:apachekafka' }] },
-			{ category: 'Blockchain', items: [{ name: 'Solidity', icon: 'simple-icons:solidity' }] },
 			{
-				category: 'Frontend',
+				category: 'Mobile',
 				items: [
-					{ name: 'TypeScript', icon: 'simple-icons:typescript' },
-					{ name: 'WebGL', icon: 'simple-icons:webgl' },
+					{ name: 'React Native', icon: 'simple-icons:react' },
+					{ name: 'Expo', icon: 'simple-icons:expo' },
 				],
 			},
+			{ category: 'Linguagem', items: [{ name: 'TypeScript', icon: 'simple-icons:typescript' }] },
 		],
-		tags: ['Go', 'PostgreSQL', 'Kafka', 'WebSocket', 'Solidity', 'TypeScript', 'WebGL'],
+		tags: ['React Native', 'Expo', 'TypeScript'],
 	},
 ];

@@ -118,13 +118,6 @@
 						align: 'start',
 						loop: true,
 					}}
-					plugins={[
-						Autoplay({
-							delay: 3200,
-							stopOnMouseEnter: true,
-							stopOnInteraction: false,
-						}),
-					]}
 				>
 					<Carousel.Content class="-ms-1">
 						{#each privateProjects as privateProject (privateProject.title)}
@@ -191,8 +184,8 @@
 																		</Carousel.Item>
 																	{/each}
 																</Carousel.Content>
-																<Carousel.Previous class="inset-s-2" />
-																<Carousel.Next class="inset-e-2" />
+																<Carousel.Previous class="inset-s-2 active:-translate-y-1/2!" />
+																<Carousel.Next class="inset-e-2 active:-translate-y-1/2!" />
 																<Badge class="absolute right-2 bottom-2" variant="secondary">{activeIndex + 1} / {gallery.length}</Badge>
 															</Carousel.Root>
 
@@ -305,8 +298,8 @@
 							</Carousel.Item>
 						{/each}
 					</Carousel.Content>
-					<Carousel.Previous />
-					<Carousel.Next />
+					<Carousel.Previous class="active:-translate-y-1/2!" />
+					<Carousel.Next class="active:-translate-y-1/2!" />
 				</Carousel.Root>
 			</div>
 		</div>
