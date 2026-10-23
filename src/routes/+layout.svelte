@@ -104,7 +104,7 @@
 	{@html jsonLdTag}
 </svelte:head>
 
-<ModeWatcher defaultMode="dark" modeStorageKey="davi-theme-v2" />
+<ModeWatcher defaultMode="dark" />
 
 <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
 	<nav class="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
