@@ -32,14 +32,6 @@ export const certificates = [
 		url: 'https://ude.my/UC-d4fb5435-d78b-4017-9c8a-4e5b70101748',
 	},
 	{
-		title: 'Curso completo de PostgreSQL! Do Básico ao Avançado v2026',
-		issuer: 'Udemy',
-		instructor: 'Vitor Mazuco',
-		hours: '49.5h',
-		date: 'Out 2026',
-		url: 'https://ude.my/UC-d4fb5435-d78b-4017-9c8a-4e5b70101748',
-	},
-	{
 		title: 'Formação Linux Completa: Do Básico ao Avançado',
 		issuer: 'Udemy',
 		instructor: 'Mateus Müller',
