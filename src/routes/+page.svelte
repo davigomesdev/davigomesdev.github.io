@@ -18,7 +18,7 @@
 	import DownloadIcon from '@lucide/svelte/icons/download';
 
 	import Badge from '$lib/components/ui/badge/badge.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
+	import Button, { buttonVariants } from '$lib/components/ui/button/button.svelte';
 	import Autoplay from 'embla-carousel-autoplay';
 
 	import * as Card from '$lib/components/ui/card';
@@ -126,13 +126,17 @@
 							<Carousel.Item class="ps-1 md:basis-1/2 lg:basis-1/3">
 								<div class="h-full p-1">
 									<Dialog.Root>
-										<Dialog.Trigger class="block h-full w-full text-start">
+										<Dialog.Trigger class="block h-full w-full rounded-xl text-start focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
 											<div
-												class="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/30"
+												class="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-primary/40"
 											>
 												<div class="p-2">
 													<div class="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
-														<img class="absolute inset-0 size-full object-cover object-top" alt={privateProject.title} src={privateProject.image} />
+														<img
+															class="absolute inset-0 size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+															alt={privateProject.title}
+															src={privateProject.image}
+														/>
 													</div>
 												</div>
 
@@ -149,10 +153,15 @@
 														<Typography.P class="mt-1.5 line-clamp-2 leading-relaxed">{privateProject.summary ?? privateProject.description}</Typography.P>
 													</div>
 
-													<div class="mt-auto flex flex-wrap gap-1.5">
+													<div class="mb-2 flex flex-wrap gap-1.5">
 														{#each privateProject.tags as tag (tag)}
 															<Badge class="text-primary" variant="secondary">{tag}</Badge>
 														{/each}
+													</div>
+
+													<div class={cn(buttonVariants({ variant: 'outline' }), 'mt-auto')}>
+														<Icon class="size-4" icon="lucide:panel-right-open" />
+														Ver detalhes
 													</div>
 												</div>
 											</div>
