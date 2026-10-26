@@ -1,5 +1,37 @@
 export const certificates = [
 	{
+		title: 'Go (Golang): Explorando a Linguagem do Google',
+		issuer: 'Udemy',
+		instructor: 'Leonardo Moura Leitao, Cod3r Cursos Online',
+		hours: '11.5h',
+		date: 'Out 2026',
+		url: 'https://ude.my/UC-80bbb744-76ac-4ed3-88ff-710d291ffc8d',
+	},
+	{
+		title: 'Introdução à Cibersegurança',
+		issuer: 'Cisco Networking Academy',
+		instructor: 'Cisco Networking Academy',
+		hours: '6h',
+		date: 'Out 2026',
+		url: 'https://www.netacad.com/recognitions/verify/327fc3db-db7d-4511-ab8e-838ca5e6fdf0',
+	},
+	{
+		title: 'Aprendendo programação básica e avançada com Linguagem C++',
+		issuer: 'Udemy',
+		instructor: 'Marcos Pacheco',
+		hours: '20.5h',
+		date: 'Out 2026',
+		url: 'https://ude.my/UC-f4dca169-848c-4b24-a277-16cc08e40fe3',
+	},
+	{
+		title: 'Curso completo de PostgreSQL! Do Básico ao Avançado v2026',
+		issuer: 'Udemy',
+		instructor: 'Vitor Mazuco',
+		hours: '49.5h',
+		date: 'Out 2026',
+		url: 'https://ude.my/UC-d4fb5435-d78b-4017-9c8a-4e5b70101748',
+	},
+	{
 		title: 'Curso completo de PostgreSQL! Do Básico ao Avançado v2026',
 		issuer: 'Udemy',
 		instructor: 'Vitor Mazuco',
