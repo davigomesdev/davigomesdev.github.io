@@ -2,12 +2,10 @@ export const stacks = [
 	{
 		category: 'Backend',
 		items: [
-			{ name: 'Go', icon: 'simple-icons:go' },
-			{ name: 'Rust', icon: 'simple-icons:rust' },
 			{ name: 'Java', icon: 'simple-icons:openjdk' },
 			{ name: 'Node.js', icon: 'simple-icons:nodedotjs' },
-			{ name: 'C', icon: 'simple-icons:c' },
-			{ name: 'C++', icon: 'simple-icons:cplusplus' },
+			{ name: 'Go', icon: 'simple-icons:go' },
+			{ name: 'Rust', icon: 'simple-icons:rust' },
 		],
 	},
 	{

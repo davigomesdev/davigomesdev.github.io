@@ -65,16 +65,17 @@
 			</div>
 
 			<Typography.H1 id="hero" class="mt-10 max-w-2xl text-center font-bold lg:max-w-3xl">
-				Código limpo, alta performance, <span class="text-primary">sistemas que escalam.</span>
+				Sistemas robustos. <span class="text-primary">Arquitetura que escala.</span>
 			</Typography.H1>
 			<Typography.P class="mt-6 max-w-lg text-center">
-				Desenvolvedor full-stack com foco em performance e sistemas distribuídos. Java, Go, Rust, Node.js, React, Svelte, Web3 (Solidity & Solana) e bancos relacionais e NoSQL.
+				Engenheiro de software com mais de 5 anos de experiência no desenvolvimento de aplicações web, APIs e sistemas distribuídos. Atuação em backend, frontend e infraestrutura,
+				com foco em arquitetura, performance e escalabilidade.
 			</Typography.P>
 
 			<div class="mt-10 flex flex-col gap-3 max-sm:w-full sm:flex-row">
-				<Button class="max-sm:w-full" download="curriculo-davi-gomes.pdf" href="/curriculo-davi-gomes.pdf" size="lg">
-					<DownloadIcon />
-					Download CV
+				<Button href="https://linkedin.com/in/davigomesdev" rel="noopener noreferrer" size="lg" target="_blank">
+					<Icon icon="simple-icons:linkedin" />
+					Meu LinkedIn
 				</Button>
 				<Button class="max-sm:w-full" href="#works" size="lg" variant="outline">Veja meu trabalho</Button>
 			</div>
