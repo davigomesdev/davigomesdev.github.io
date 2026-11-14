@@ -15,7 +15,6 @@
 
 	import Icon from '@iconify/svelte';
 	import MailIcon from '@lucide/svelte/icons/mail';
-	import DownloadIcon from '@lucide/svelte/icons/download';
 
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import Button, { buttonVariants } from '$lib/components/ui/button/button.svelte';

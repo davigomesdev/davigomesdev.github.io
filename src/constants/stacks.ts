@@ -2,9 +2,9 @@ export const stacks = [
 	{
 		category: 'Backend',
 		items: [
-			{ name: 'Java', icon: 'simple-icons:openjdk' },
 			{ name: 'Node.js', icon: 'simple-icons:nodedotjs' },
 			{ name: 'Go', icon: 'simple-icons:go' },
+			{ name: 'Java', icon: 'simple-icons:openjdk' },
 			{ name: 'Rust', icon: 'simple-icons:rust' },
 		],
 	},
